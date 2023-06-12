@@ -4,24 +4,22 @@ theme: /
 
     state: Start
         q!: $regex</start>
-        a: Начнём.
+    # a: Начнём kdkd.
+    state: /hello
+        # intent!: /hello
+        q!: *(*привет*/*старт*/*здравст*)*
+        a: привет!
 
-    state: Hello
-        intent!: /hello 
-        a: Привет привет
+    state: /weather
+        # intent!: /weather
+        q!: *(*погод*/*прогноз*/*дождь*/*ветер*)*
+        a: weather weather
 
-    state: Weather
-        intent!: /weather
-        a: Погода
-    
-    state: Currency
-        intent!: /currency
-        a: Курс валют
+    state: /currency
+        # intent!: /currency
+        q!: *(*курс*/*валют*/*стои*)*
+        a: currency currency
 
     state: NoMatch
         event!: noMatch
         a: Я не понял. Вы сказали: {{$request.query}}
-
-    state: Match
-        event!: match
-        a: {{$context.intent.answer}}
