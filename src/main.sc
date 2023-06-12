@@ -4,22 +4,30 @@ theme: /
 
     state: Start
         q!: $regex</start>
-    # a: Начнём kdkd.
+        a: Начнём.
+
     state: /hello
-        # intent!: /hello
-        q!: *(*привет*/*старт*/*здравст*)*
-        a: привет!
+        q!: *(привет/здравствуйте/Добрый день/Доброе утро/Доброй ночи)*
+        random:
+            a: Привет привет
+            a: приветики
 
     state: /weather
-        # intent!: /weather
-        q!: *(*погод*/*прогноз*/*дождь*/*ветер*)*
-        a: weather weather
-
+        q!: *(погода/погода на сегодня/прогноз погоды)*
+        random:
+            a: Погода
+            a: не погода
+    
     state: /currency
-        # intent!: /currency
-        q!: *(*курс*/*валют*/*стои*)*
-        a: currency currency
+        q!: *(курс валют/курс/курс валют на сегодня)*
+        random:
+            a: Курс валют
+            a: все плохо
 
-    state: NoMatch
+    state: /NoMatch
         event!: noMatch
-        a: Я не понял. Вы сказали: {{$request.query}}
+        a: Я не понял Вас. Вы сказали: {{$request.query}}
+
+    # state: Match
+    #     event!: match
+    #     a: {{$context.intent.answer}}
